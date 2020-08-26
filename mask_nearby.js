@@ -23,7 +23,7 @@ search_btn.addEventListener("click", () => {
 search_bar.addEventListener("keyup", () => { 
     // key code 13 = 엔터
     let keyword = search_bar.value;
-    if(event.keyCode === 13) {
+    if(keyword && event.keyCode === 13) {
         search_btn.click();
     }
 });
@@ -35,8 +35,7 @@ function keywordSearch(keyword){
 
 function keywordSearchCallback (data, status, pagination) {
     if (status === kakao.maps.services.Status.OK) {
-        const center = new kakao.maps.LatLng(data[0].y, data[0].x);
+        let center = new kakao.maps.LatLng(data[0].y, data[0].x);
         map.setCenter(center); 
-        getMaskDataAndDrawMarker(data[0].y, data[0].x); 
     }
 }
